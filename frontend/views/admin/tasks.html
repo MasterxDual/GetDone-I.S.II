@@ -31,9 +31,9 @@
         <textarea class="form-control" id="description" name="description" rows="3"></textarea>
       </div>
 
-      <!-- Fecha de entrega -->
+      <!-- Fecha de vencimiento -->
       <div class="mb-3">
-        <label for="delivery_date" class="form-label">Fecha de Entrega</label>
+        <label for="delivery_date" class="form-label">Fecha de Vencimiento</label>
         <input type="date" class="form-control" id="delivery_date" name="delivery_date" required>
         <div class="invalid-feedback">Debe seleccionar una fecha válida.</div>
       </div>
@@ -52,18 +52,8 @@
         <div class="invalid-feedback">Seleccione una prioridad.</div>
       </div>
 
-      <!-- Usuario -->
-      <div class="mb-3">
-        <label for="user_id" class="form-label">Asignar a Usuario</label>
-        <select class="form-select" id="user_id" name="user_id" required>
-          <option value="">Seleccionar usuario</option>
-          <!-- Opciones se cargarán dinámicamente -->
-        </select>
-        <div class="invalid-feedback">Seleccione un usuario.</div>
-      </div>
-
       <!-- Botón -->
-      <button type="submit" class="btn btn-primary">Asignar Tarea</button>
+      <button type="submit" class="btn btn-primary">Crear Tarea</button>
     </form>
   </div>
 </body>

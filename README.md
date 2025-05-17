@@ -1,52 +1,30 @@
-# Proyecto Desarrollo Web - GetDone
+# Plataforma Web para Gestion de Tareas - GetDone
 
-## Estructura General del Proyecto
-```
-task-manager/
-├── frontend/               # Parte del cliente
-│   ├── assets/
-│   │   ├── images/        # Íconos, logos, gráficos
-│   │   └── fonts/         # Fuentes personalizadas
+```bash
+.
+├── backend/
+│   ├── config/
+│   │   └── db.js         # Config PostgreSQL
+│   ├── controllers/
+│   │   └── tasks.js      # Lógica de tareas
+│   ├── models/
+│   │   └── Task.js       # Modelo de DB
+│   ├── routes/
+│   │   └── tasks.js      # Rutas API
+│   └── server.js         # Servidor Express
+├── frontend/
 │   ├── css/
-│   │   ├── auth.css       # Estilos para autenticación
-│   │   ├── admin.css      # Estilos específicos admin
-│   │   ├── user.css       # Estilos específicos usuario
-│   │   └── main.css       # Estilos compartidos
+│   │   └── style.css     # Estilos globales
+│   ├── images/           # Logos/illustraciones
 │   ├── js/
-│   │   ├── auth.js        # Lógica de autenticación
-│   │   ├── admin.js       # Funcionalidades admin
-│   │   ├── user.js        # Funcionalidades usuario
-│   │   ├── charts.js      # Gráficos (Chart.js)
-│   │   └── notifications.js # Notificaciones
+│   │   └── app.js        # Lógica frontend
 │   ├── views/
-│   │   ├── auth/
-│   │   │   ├── login.html
-│   │   │   └── register.html
-│   │   ├── admin/
-│   │   │   ├── dashboard.html  # Vista principal admin
-│   │   │   ├── tasks.html      # CRUD tareas
-│   │   │   ├── projects.html   # Gestión proyectos
-│   │   │   ├── users.html      # Asignación tareas
-│   │   │   └── reports.html    # Estadísticas
-│   │   ├── user/
-│   │   │   ├── dashboard.html  # Vista principal usuario
-│   │   │   ├── mytasks.html    # Tareas asignadas
-│   │   │   ├── profile.html    # Perfil usuario
-│   │   │   ├── shared.html     # Proyectos compartidos
-│   │   │   └── stats.html      # Estadísticas personales
-│   │   └── shared/             # Componentes reutilizables
-│   │       ├── navbar.html
-│   │       ├── footer.html
-│   │       └── notification.html
-│   └── index.html              # Página de inicio pública
-├── backend/                # Parte del servidor
-│   ├── config/             # Configuraciones
-│   ├── controllers/        # Controladores
-│   ├── models/             # Modelos de datos
-│   ├── routes/             # Rutas
-│   ├── middlewares/        # Middlewares
-│   └── app.js              # Aplicación principal
-├── database/               # Scripts y modelos de base de datos
-├── docs/                   # Documentación
-└── README.md               # Documentación principal
+│   │   └── auth/
+│   │       └── login.html # HTML de login
+│   |       └── register.html # HTML de registro
+│   └── index.html         # Página principal
+├── sql/
+│   └── init.sql          # Scripts de tablas
+├── .gitignore            # Ignora node_modules, .env, etc
+└── README.md             # Guía básica
 ```

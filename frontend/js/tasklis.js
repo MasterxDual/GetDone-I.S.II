@@ -59,7 +59,7 @@ async function loadTasks() {
  * Redireccion a creacion de tareas
  */
 function goToCreateTask() {
-    window.location.href = "CREARTAREAS.html";
+    window.location.href = "tasks.html";
   }
 
 

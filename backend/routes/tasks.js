@@ -33,6 +33,36 @@ router.post('/', async (req, res) => {
   }
 });
 
+/* Esto permite que cualquier cliente frontend pueda hacer un GET a /api/tasks y reciba un JSON con todas las tareas almacenadas. */
+// Endpoint que devuelve todas las tareas guardadas en la base de datos
+router.get('/', async (req, res) => {
+  try {
+    // Consultamos todas las tareas usando Sequelize
+    const tareas = await Task.findAll();
+
+    // Devolvemos las tareas como JSON
+    res.json(tareas);
+  } catch (err) {
+    console.error(err);
+
+    // Si hay un error, devolvemos 500 con mensaje de error
+    res.status(500).json({ error: 'Error al obtener tareas' });
+  }
+});
+
+
+/* 
+En app.js:
+  app.use('/autos', autosRoutes);
+
+En autosRoutes.js:
+  router.get('/')  →  GET /autos
+  router.get('/nuevo')  →  GET /autos/nuevo
+
+  El / es el inicio del submódulo, no del sitio completo.
+*/
+
+
 // Exportamos este router para que pueda ser usado en app.js o index.js
 module.exports = router;
 

@@ -25,9 +25,9 @@ function logout() {
  */
 async function loadTasks() {
     try {
-      const res = await fetch('http://localhost:3000/tasks');
-      const tasks = await res.json();
-      const list = document.getElementById('taskList');
+      const res = await fetch('/api/tasks'); //Antes estaba: http://localhost:3000/tasks --> Error, front se debe comunicar con back a través de la API
+      const tasks = await res.json(); //Espera a que el servidor responda y convierte ese JSON en un objeto usable en JavaScript, guardandolo en la variable tasks
+      const list = document.getElementById('taskList'); //Trae la lista de tareas del HTML
 
       list.innerHTML = ''; // limpiamos antes de agregar
 
@@ -39,15 +39,15 @@ async function loadTasks() {
             </div>
             <div class="col">
               <h5 class="mb-0">${task.title}</h5>
-              <p class="text-muted mb-0">${task.description}</p>
+              <p class="text-muted mb-0">${task.description}</p> 
             </div>
             <div class="col-auto task-meta">
               <strong>Prioridad: ${task.priority}</strong><br>
-              <span class="text-muted">Exp: ${task.due_date}</span>
+              <span class="text-muted">Exp: ${task.delivery_date}</span>
             </div>
           </div>
         `;
-        list.innerHTML += html;
+        list.innerHTML += html; //Carga dinámicamente el HTML de cada tarea en la lista del frontend
       });
     } catch (error) {
       console.error('Error cargando tareas:', error);
@@ -61,7 +61,6 @@ async function loadTasks() {
 function goToCreateTask() {
     window.location.href = "tasks.html";
   }
-
 
   // Llamamos la función al cargar la página
   window.onload = loadTasks;

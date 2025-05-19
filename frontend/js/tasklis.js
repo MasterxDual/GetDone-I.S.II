@@ -37,13 +37,39 @@ async function loadTasks() {
             <div class="col-auto">
               <img src="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" alt="Task Icon" class="task-img">
             </div>
+
             <div class="col">
               <h5 class="mb-0">${task.title}</h5>
               <p class="text-muted mb-0">${task.description}</p> 
             </div>
+
             <div class="col-auto task-meta">
-              <strong>Prioridad: ${task.priority}</strong><br>
-              <span class="text-muted">Exp: ${task.delivery_date}</span>
+              <!-- d-flex: ponemos los elementos uno al lado del otro
+              gap-2: separacion entre el boton y el texto -->
+              <div class="d-flex align-items-start gap-2">
+                <!-- Botón de opciones con menú desplegable -->
+                <div class="dropdown text-end mt-2">
+
+                <button class="btn btn-light btn-sm" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- Añade los tres puntos al botón -->
+                <i class="bi bi-three-dots-vertical"></i> 
+                </button>
+
+                <!-- Añade un desplegable con opciones que se abre cuando clickeamos los tres puntos -->
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#" onclick="editTask()">Editar</a></li>
+                <li><a class="dropdown-item text-danger" href="#" onclick="deleteTask()">Eliminar</a></li>
+                </ul>
+
+              </div>
+
+              <!-- Mostramos la prioridad y la expiración -->
+              <div>
+                <strong>Prioridad: ${task.priority}</strong><br>
+                <span class="text-muted">Exp: ${task.delivery_date}</span>
+              </div>
+
             </div>
           </div>
         `;

@@ -58,7 +58,7 @@ async function loadTasks() {
 
                 <!-- Añade un desplegable con opciones que se abre cuando clickeamos los tres puntos -->
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" onclick="editTask()">Editar</a></li>
+                <li><a class="dropdown-item" href="#" onclick="editTask(${task.id})">Editar</a></li>
                 <li><a class="dropdown-item text-danger" href="#" onclick="deleteTask()">Eliminar</a></li>
                 </ul>
 
@@ -79,6 +79,44 @@ async function loadTasks() {
       console.error('Error cargando tareas:', error);
     }
   }
+
+async function editTask(id) {
+  const newDescription = prompt("Nueva descripción de la tarea:"); //Recibe la nueva descripción de la tarea
+
+  if (!newDescription) return;
+
+  const newDate = prompt("Nueva fecha de vencimiento (YYYY-MM-DD):"); //Recibe la nueva fecha de vencimiento
+
+  //Valida que la fecha tenga el formato correcto
+  if (!newDate || !/^\d{4}-\d{2}-\d{2}$/.test(newDate)) {
+    alert("Fecha inválida. Debe tener el formato YYYY-MM-DD.");
+    return;
+  }
+
+  try {
+    const res = await fetch(`/api/tasks/${id}`, { // Se utiliza para que el frontend se comunique con el backend o con cualquier API.
+      method: 'PUT', // Método HTTP para actualizar
+      headers: { 'Content-Type': 'application/json' }, // Indica que el cuerpo de la petición es JSON
+      body: JSON.stringify({ // Se encarga de enviar datos al servidor en formato JSON.
+        description: newDescription,
+        delivery_date: newDate
+      })
+    });
+
+    const data = await res.json(); //Espera a que el servidor responda y convierte ese JSON en un objeto usable en JavaScript
+
+    if (res.ok) {
+      alert(data.mensaje); // Muestra en pantalla el mensaje que devolvió el backend ("Tarea actualizada correctamente")
+      loadTasks(); // Refrescar la lista dinámicamente
+    } else {
+      alert("Error: " + data.error);
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Error al actualizar la tarea.");
+  }
+}
 
 /**
  * TO-DO:

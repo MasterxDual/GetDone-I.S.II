@@ -50,6 +50,36 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Ruta PUT para modificar solo la descripción y fecha de entrega de una tarea
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params; //Trae los parametros de la URL
+    const { description, delivery_date } = req.body; //Trae el body de la peticion
+
+    //Busca la tarea en la base de datos por su ID o clave primaria
+    const task = await Task.findByPk(id);
+
+    //Si no encuentra la tarea, devuelve un error 404
+    if (!task) {
+      return res.status(404).json({ error: 'Tarea no encontrada' });
+    }
+
+    // Solo actualizamos los campos permitidos, evitando que la base de datos pida el title y la priority obligatoriamente
+    if(description) task.description = description;
+    if(delivery_date) task.delivery_date = delivery_date;
+
+    // Guardamos los cambios en la base de datos
+    await task.save();
+
+    // Devolvemos la tarea actualizada como respuesta, convertida en JSON
+    res.json({ mensaje: 'Tarea actualizada correctamente', task });
+
+  } catch (error) {
+    console.error(error); //Si hay un error, lo mostramos convertido en texto
+    res.status(500).json({ error: 'Error al actualizar la tarea' });
+  }
+});
+
 
 /* 
 En app.js:

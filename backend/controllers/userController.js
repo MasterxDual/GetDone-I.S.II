@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 // Importa el modelo de Usuario para interactuar con la base de datos
 const userModel = require('../models/userModel');
 
+// Importamos Sequelize para poder manejar sus errores específicos
+const { UniqueConstraintError } = require('sequelize');
+
 /**
  * Controlador para registrar un nuevo usuario
  * @param {Object} req - Objeto de solicitud HTTP (contiene email y password en el body)
@@ -33,7 +36,7 @@ async function register(req, res) {
         // Crea un nuevo usuario en la base de datos
         const newUser = await userModel.createUser(
             firstName,
-            lastName || '', // usa valor por defecto si no se proporciona
+            lastName,
             email,
             hashedPassword
         );
@@ -41,9 +44,24 @@ async function register(req, res) {
         // Respuesta exitosa (201 Created)
         res.status(201).json({
             message: 'User created successfully',
-            user: newUser // Retorna el nuevo usuario sin la contraseña
+            user: {
+                id: newUser.id,
+                firstName: newUser.firstName,
+                lastName: newUser.lastName,
+                email: newUser.email
+            } // Retorna el nuevo usuario sin la contraseña
         });
     } catch (error) {
+        // Manejo específico para error de violación de restricción única
+        if (error instanceof UniqueConstraintError || 
+            (error.name && error.name === 'SequelizeUniqueConstraintError')) {
+            return res.status(409).json({ 
+                message: 'Email already in use',
+                detail: 'This email address is already registered in our system.'
+            });
+        }
+
+
         // Maneja cualquier error que pueda ocurrir durante la operación
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });

@@ -1,3 +1,6 @@
+/* Conexion a base de datos Deprecada */
+
+
 // Conexion a la base de datos
 
 // Importa la clase Pool de la librería pg (node-postgres)

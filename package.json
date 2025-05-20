@@ -1,0 +1,29 @@
+{
+  "name": "getdone---web",
+  "version": "1.0.0",
+  "description": "Paquete json necesario para instalar express js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MasterxDual/GetDone---Web.git"
+  },
+  "author": "Brambilla, Funes, Vargas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MasterxDual/GetDone---Web/issues"
+  },
+  "homepage": "https://github.com/MasterxDual/GetDone---Web#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.7"
+  },
+  "keywords": []
+}

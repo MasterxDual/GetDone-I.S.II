@@ -1,7 +1,7 @@
 // Modulo de Usuario
 
 // Importa el Pool de conexiones a la base de datos definido en db.js
-const pool = require('./db');
+const pool = require('../config/db');
 
 /**
  * Busca un usuario por su direccion de email en la base de datos

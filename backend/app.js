@@ -7,8 +7,9 @@
 const express = require('express');
 const cors = require('cors');
 
-// Importa las rutas de usuarios
+// Importa las rutas de usuarios y tareas
 const userRoutes = require('./routes/userRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 // Importa la configuración de Sequelize para establecer la conexión a la base de datos
 const sequelize = require('./config/sequelize');
@@ -25,11 +26,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Middleware para servir archivos estáticos desde la carpeta 'public'
 // Esto permite acceder al HTML, CSS y JS del frontend sin rutas adicionales
-app.use(express.static('frontend')); 
+app.use(express.static('frontend'));
 
 // Montamos las rutas de tareas bajo el prefijo /api/tareas
 // Por ejemplo: POST /api/tareas, GET /api/tareas, etc.
-app.use('/api/tasks', tareasRoutes);
+app.use('/api/tasks', taskRoutes);
 
 // Configuracion de rutas
 app.use('/api/users', userRoutes); // Monta la rutas de usuarios bajo /api/users

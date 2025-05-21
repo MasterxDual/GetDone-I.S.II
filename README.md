@@ -67,14 +67,16 @@ GETDONE-I.S.II/
 
 ```bash
 git clone https://github.com/MasterxDual/GetDone-I.S.II.git
-cd GetDone-I.S.II
+cd GetDone-I.S.II/
 ```
 
 ### 2. Configura el backend
 
+Por convención: Todos los comandos `npm` deben ejecutarse dentro de la carpeta /backend. Debido a que el proyecto se desarrollo con una arquitectura separada frontend/backend, por lo cual se tiene un unico archivo `package.json` alojado en el backend con todas sus dependencias. El frontend no usa Node/npm o herramientas del tipo.
+
 1. Entra a la carpeta:
     ```bash
-    cd backend
+    cd backend/
     ```
 2. Instala las dependencias:
     ```bash

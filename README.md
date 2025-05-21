@@ -47,8 +47,6 @@ GETDONE-I.S.II/
 │   └── index.html
 ├── requerimientos/
 ├── .gitignore
-├── package.json
-├── package-lock.json
 └── README.md
 ```
 

@@ -136,8 +136,8 @@ cd GetDone-I.S.II
 ## 📬 Contacto
 
 Para dudas técnicas o errores de configuración, puedes contactar:
-- Tobias Funes: tobiasfunes@hotmail.com.ar) - Desarrollador
-- Agustin Brambilla: agusbram@gmail.com) - Desarrollador
+- Tobias Funes: tobiasfunes@hotmail.com.ar - Desarrollador
+- Agustin Brambilla: agusbram@gmail.com - Desarrollador
 
 ---
 

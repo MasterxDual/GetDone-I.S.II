@@ -1,4 +1,5 @@
 .obsidian/
+
 # Se agregan archivos que no se comparten entre los devs por el backend
 # Node.js
 node_modules/

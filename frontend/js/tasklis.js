@@ -3,7 +3,7 @@
  *  Redirigir al login
  */
 function logout() {
-      window.location.href = "LOGIN.html";
+      window.location.href = "../views/auth/login.html";
     }
 
 
@@ -25,7 +25,8 @@ function logout() {
  */
 async function loadTasks() {
     try {
-      const res = await fetch('/api/tasks'); //Antes estaba: http://localhost:3000/tasks --> Error, front se debe comunicar con back a través de la API
+      const res = await fetch('http://localhost:3000/api/tasks');
+      // const res = await fetch('/api/tasks'); //Antes estaba: http://localhost:3000/tasks --> Error, front se debe comunicar con back a través de la API
       const tasks = await res.json(); //Espera a que el servidor responda y convierte ese JSON en un objeto usable en JavaScript, guardandolo en la variable tasks
       const list = document.getElementById('taskList'); //Trae la lista de tareas del HTML
 

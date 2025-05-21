@@ -57,7 +57,7 @@ GETDONE-I.S.II/
 ## 🚀 Tecnologías principales
 
 - **Backend:** Node.js, Express.js, Sequelize, PostgreSQL, dotenv
-- **Frontend:** HTML, CSS, JavaScript vanilla
+- **Frontend:** HTML, CSS, JavaScript
 
 ---
 

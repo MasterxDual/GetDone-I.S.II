@@ -18,11 +18,14 @@ async function register(req, res) {
     // Extrae el email y la contraseña del cuerpo de la solicitud
     const { firstName, lastName,  email, password } = req.body;
 
+    
     // Validacion basica de campos requeridos
     if (!firstName || !lastName || !email || !password) {
         return res.status(400).json({ message: 'All fields are required' });
     }
-
+    
+    email.trim().toLowerCase(); // Elimina espacios en blanco y convierte a minúsculas
+    
     try {
         // Busca si ya existe un usuario con el mismo email
         const existingUser = await userModel.findUserByEmail(email);
@@ -53,9 +56,9 @@ async function register(req, res) {
         });
     } catch (error) {
         // Manejo específico para error de violación de restricción única
-        if (error instanceof UniqueConstraintError || 
+        if (error instanceof UniqueConstraintError ||
             (error.name && error.name === 'SequelizeUniqueConstraintError')) {
-            return res.status(409).json({ 
+            return res.status(409).json({
                 message: 'Email already in use',
                 detail: 'This email address is already registered in our system.'
             });
@@ -68,7 +71,49 @@ async function register(req, res) {
     }
 }
 
+async function login(req, res) {
+
+    // Extrae el email y la contraseña de la solucitud
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    email.trim().toLowerCase(); // Normaliza el email a minúsculas
+
+    try {
+        // Buscar el usuario en la base de datos
+        const user = await userModel.findUserByEmail(email);
+        if (!user) {
+            return res.status(401).json({ error: "Credenciales invalidas" });
+        }
+
+        // Comparar contraseñas
+        const isValidPassword = await bcrypt.compare(password, user.password);
+
+        if (!isValidPassword) {
+            return res.status(401).json({ error: 'Credenciales invalidas' });
+        }
+
+        // Si todo es correcto, generar token de sesión
+        /* Implementar */
+
+        res.json({
+            success: true,
+            user: {
+                id: user.id,
+                email: user.email,
+            }
+        });
+    } catch (error) {
+        console.error('Error en el login:', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+}
+
 // Exportar el controlador para su uso en las rutas
 module.exports = {
     register,
+    login,
 };

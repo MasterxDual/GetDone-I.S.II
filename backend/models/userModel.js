@@ -7,6 +7,9 @@ const { DataTypes } = require('sequelize');
 // Importa la instancia de Sequelize que se conecta a la base de datos (conexion ya establecida)
 const sequelize = require('../config/sequelize');
 
+// Importa byscript para el hasheo seguro de contraseñas
+const bcrypt = require('bcryptjs');
+
 // Define el modelo de Usuario usando Sequelize
 // El primer argumento ('User') es el nombre del modelo, y el segundo es un objeto que define las columnas de la tabla.
 const User = sequelize.define('User', {
@@ -30,7 +33,7 @@ const User = sequelize.define('User', {
 }, {
     tableName: 'users',                 // Nombre de la tabla en la base de datos (en plural por convención)
     freezeTableName: true,              // Evita que Sequelize pluralice el nombre de la tabla (usará 'users' tal cual)
-    underscored: true,                  // Convierte camelCase a snake_case automáticamente (Nomenclatura de la base de
+    underscored: true,                  // Convierte camelCase a snake_case automáticamente (Nomenclatura de la base de datos)
     
     /* Posble eliminacion (A revisar) */
     timestamps: true,                   // Asegúrate que coincida con tu tabla (si tienes created_at/updated_at)
@@ -51,6 +54,7 @@ async function findUserByEmail(email) {
 async function createUser(firstName, lastName, email, password) {
     return await User.create({ firstName, lastName, email, password }); // Crea un nuevo usuario
 }
+
 
 // Exporta:
 // - El modelo User (para usarlo en relaciones o consultas personalizadas).

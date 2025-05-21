@@ -12,8 +12,6 @@ const userController = require("../controllers/userController");
  * @api {POST} /api/users/register
  * @apiName RegisterUser
  * @apiGroup Users
- * @apiBody {String} email - Email del nuevo usuario
- * @apiBody {String} password - Contraseña del nuevo usuario
  */
 router.post("/register", userController.register);
 
@@ -22,10 +20,8 @@ router.post("/register", userController.register);
  * @api {POST} /api/users/login
  * @apiName LoginUser
  * @apiGroup Users
- * @apiBody {String} email - Email del usuario
- * @apiBody {String} password - Contraseña del usuario
  */
-/* router.post("/login", userController.login); */
+router.post("/login", userController.login);
 
 // Exporta el router para ser usado en la aplicación principal
 module.exports = router;
